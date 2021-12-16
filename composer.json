@@ -1,0 +1,21 @@
+{
+    "name": "norman-huth/wp-child",
+    "autoload": {
+        "psr-4": {
+            "NormanHuth\\WpChild\\": "theme/"
+        },
+        "files": [
+            "functions/wordpress.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "Norman Huth",
+            "email": "norman@huth.it"
+        }
+    ],
+    "require": {
+        "php": "^7.4|^8.0",
+        "ext-json": "*"
+    }
+}
