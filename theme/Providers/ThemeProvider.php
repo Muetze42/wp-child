@@ -9,7 +9,7 @@ class ThemeProvider
      */
     protected string $themeSlug = '';
 
-    protected static ?ThemeProvider $instance = NULL;
+    protected static ?ThemeProvider $instance = null;
     protected array $manifest;
     protected string $themePath;
     protected string $themeUrl;
@@ -29,7 +29,7 @@ class ThemeProvider
      */
     static public function instance(): ?ThemeProvider
     {
-        if (self::$instance === NULL) {
+        if (self::$instance === null) {
             self::$instance = new ThemeProvider;
         }
 
