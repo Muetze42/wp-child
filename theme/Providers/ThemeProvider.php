@@ -70,7 +70,7 @@ class ThemeProvider
      */
     protected function enqueueStylesheet(string $file, array $dependencies = [], ?string $handle = null, ?string $version = null)
     {
-        $this->enqueueAsset($file, $dependencies, $handle, $version);
+        $this->wpEnqueue($file, $dependencies, $handle, $version);
     }
 
     /**
@@ -83,7 +83,7 @@ class ThemeProvider
      */
     protected function enqueueScript(string $file, array $dependencies = [], ?string $handle = null, ?string $version = null)
     {
-        $this->enqueueAsset($file, $dependencies, $handle, $version, 'js');
+        $this->wpEnqueue($file, $dependencies, $handle, $version, 'js');
     }
 
     /**
@@ -95,7 +95,7 @@ class ThemeProvider
      * @param string|null $version
      * @param string $type
      */
-    protected function enqueueAsset(string $file, array $dependencies = [], ?string $handle = null, ?string $version = null, string $type = 'css')
+    protected function wpEnqueue(string $file, array $dependencies = [], ?string $handle = null, ?string $version = null, string $type = 'css')
     {
         $file = '/'.$type.'/'.$file;
         if (!$version) {
