@@ -11,7 +11,8 @@
     "authors": [
         {
             "name": "Norman Huth",
-            "email": "norman@huth.it"
+            "email": "norman@huth.it",
+            "homepage": "https://huth.it"
         }
     ],
     "require": {

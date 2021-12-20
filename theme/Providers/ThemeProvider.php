@@ -14,6 +14,7 @@ class ThemeProvider
     protected string $themePath;
     protected string $themeUrl;
     protected string $themeVersion;
+    protected array $plugins = [];
 
     /**
      * Enqueue Theme Assets
@@ -21,7 +22,9 @@ class ThemeProvider
     public function enqueueAssets()
     {
         $this->enqueueStylesheet('theme.css');
-        $this->enqueueScript('theme.js');
+        //if ($this->isPluginActive('woocommerce')) {
+        //    $this->enqueueScript('theme.js');
+        //}
     }
 
     /**
@@ -50,6 +53,25 @@ class ThemeProvider
 
         add_action('init', [$this, 'hookInit']);
         add_action('wp_enqueue_scripts', [$this, 'enqueueAssets']);
+    }
+
+    /**
+     * Check if is plugin is active. Use only Plugin folder name.
+     *
+     * @param string $folderName
+     * @return bool
+     */
+    protected function isPluginActive(string $folderName): bool
+    {
+        if (empty($this->plugins)) {
+            $array = get_option('active_plugins', []);
+
+            $this->plugins = array_map(function ($value) {
+                return explode('/', $value)[0];
+            }, $array);
+        }
+
+        return in_array($folderName, $this->plugins);
     }
 
     /**

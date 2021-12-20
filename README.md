@@ -40,7 +40,7 @@ Edit `theme/Providers/ThemeProvider`:
     {
         $this->enqueueStylesheet('theme.css');
         // Full
-        $this->enqueueStylesheet('theme.css', ['elementor-pro'], 'custom-handle-slug', 'v666');
+        $this->enqueueStylesheet('theme.css', ['parent-theme'], 'custom-handle-slug', 'v666');
     }
 ```
 ##### Enqueue Scripts from ´assets/js/*.js´
