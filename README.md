@@ -6,6 +6,10 @@
 ### Theme Infos
 Set up all theme information's „**Version**“, „Theme Name“, „Description“ etc. in `style.css` in the root folder
 
+### Translation Text domain
+Search for `'child-theme'` and replace with yours `my-child-theme`.  
+_Whyyyy?_ 😢 _WordPress Plugins like „Loco Translate“ don't recognize it when it's set with a variable._
+
 ### Change namespace and autoload other function files (for WooCommerce etc)
 Set up `files` in the `composer.json` file
 ```json
