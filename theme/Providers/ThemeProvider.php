@@ -14,9 +14,7 @@ class ThemeProvider extends Kernel
     public function enqueueAssets()
     {
         $this->enqueueStylesheet('theme.css');
-        if ($this->isPluginActive('woocommerce')) {
-            $this->enqueueScript('theme.js');
-        }
+        $this->enqueueScript('theme.js');
     }
 
     /**

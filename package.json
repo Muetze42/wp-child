@@ -10,15 +10,11 @@
         "production": "mix --production"
     },
     "devDependencies": {
-        "ansi-regex": ">=6.0.1",
-        "cross-env": "^7.0.3",
-        "css-what": "^5.1.0",
-        "laravel-mix": "^6.0.39",
-        "resolve-url-loader": "^4.0.0",
-        "nth-check": ">=2.0.1",
+        "autoprefixer": "^10.4.2",
+        "laravel-mix": "^6.0.41",
         "postcss": "^8.4.5",
-        "sass": "^1.45.0",
+        "resolve-url-loader": "^5.0.0",
+        "sass": "^1.49.0",
         "sass-loader": "^12.4.0"
-    },
-    "dependencies": {}
+    }
 }

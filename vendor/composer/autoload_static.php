@@ -7,10 +7,15 @@ namespace Composer\Autoload;
 class ComposerStaticInitb73843508e744f78023314b484fe667e
 {
     public static $files = array (
+        'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
         '5c0fb40d5ef871e8bc0cec21b52d14f0' => __DIR__ . '/../..' . '/functions/wordpress.php',
     );
 
     public static $prefixLengthsPsr4 = array (
+        'S' => 
+        array (
+            'Symfony\\Polyfill\\Php80\\' => 23,
+        ),
         'N' => 
         array (
             'NormanHuth\\WpChild\\' => 19,
@@ -18,6 +23,10 @@ class ComposerStaticInitb73843508e744f78023314b484fe667e
     );
 
     public static $prefixDirsPsr4 = array (
+        'Symfony\\Polyfill\\Php80\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-php80',
+        ),
         'NormanHuth\\WpChild\\' => 
         array (
             0 => __DIR__ . '/../..' . '/theme',
@@ -25,7 +34,12 @@ class ComposerStaticInitb73843508e744f78023314b484fe667e
     );
 
     public static $classMap = array (
+        'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'PhpToken' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/PhpToken.php',
+        'Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
+        'UnhandledMatchError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
+        'ValueError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

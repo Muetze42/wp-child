@@ -14,6 +14,10 @@ const mix = require('laravel-mix');
 mix
     .setPublicPath('assets')
     .sass('resources/scss/theme.scss', 'css')
-    // .js('resources/js/theme.js', 'assets/js')
+    .sass('resources/scss/elementor-editor.scss', 'css')
     .scripts(['resources/js/theme.js'], 'assets/js/theme.js')
-    .version();
+    .scripts(['resources/js/elementor-editor.js'], 'assets/js/elementor-editor.js')
+    .version()
+    .disableNotifications()
+    .sourceMaps()
+;

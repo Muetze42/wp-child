@@ -17,6 +17,9 @@
     ],
     "require": {
         "php": "^7.4|^8.0",
-        "ext-json": "*"
+        "ext-json": "*",
+        "ext-mbstring": "*",
+        "ext-ctype": "*",
+        "symfony/polyfill-php80": "^1.25"
     }
 }

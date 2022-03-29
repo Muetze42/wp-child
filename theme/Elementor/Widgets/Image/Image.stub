@@ -1,0 +1,10 @@
+<?php
+
+namespace NormanHuth\WpChild\Elementor\Widgets\Image;
+
+use Elementor\Widget_Image;
+
+class Image extends Widget_Image
+{
+    // My Widget
+}

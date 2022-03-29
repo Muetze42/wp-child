@@ -4,31 +4,28 @@ namespace NormanHuth\WpChild;
 
 class Kernel
 {
-    public static string $themeSlug = '';
-
+    public static ?string $themeSlug;
     public static string $themePath;
+    public static string $autoloadedPath;
     public static array $manifest;
     public static string $themeUrl;
-    public static array $plugins;
     public static string $themeVersion;
 
     /**
-     * Check if Plugin is active with Plugin folder name
-     *
-     * @param string $folderName
-     * @return bool
+     * @param string|null $key
+     * @return array|string|null
      */
-    public function isPluginActive(string $folderName): bool
+    public static function getConfig(?string $key = null)
     {
-        if(empty(static::$plugins)) {
-            $array = get_option('active_plugins', []);
-
-            static::$plugins = array_map(function ($value) {
-                return explode('/', $value)[0];
-            }, $array);
+        if (empty(static::$config)) {
+            static::$config = require static::getThemePath('config/theme.php');
         }
 
-        return in_array($folderName, static::$plugins);
+        if ($key) {
+            return static::$config[$key];
+        }
+
+        return static::$config;
     }
 
     /**
@@ -72,7 +69,7 @@ class Kernel
         if (!$version) {
             $version = $this->getAssetVersion($file);
         }
-        $handle = !$handle ? static::getThemeSlug().'-'.substr(basename($file), 0, -(strlen($type)+1)) : $handle;
+        $handle = !$handle ? static::getThemeSlug().'-'.substr(basename($file), 0, -(strlen($type) + 1)) : $handle;
         if ($type == 'css') {
             wp_enqueue_style($handle, static::getThemeUrl('/assets'.$file), $dependencies, $version);
             return;
@@ -102,7 +99,7 @@ class Kernel
     public static function getThemeVersion(): string
     {
         if (empty(static::$themeVersion)) {
-            static::$themeVersion =  wp_get_theme()->get('Version');
+            static::$themeVersion = wp_get_theme()->get('Version');
         }
 
         return static::$themeVersion;
@@ -110,7 +107,11 @@ class Kernel
 
     public static function getThemeSlug(): string
     {
-        if(empty(static::$themeSlug)) {
+        if (empty(static::$themeSlug)) {
+            if (!empty(static::getConfig('slug'))) {
+                static::$themeSlug = static::getConfig('slug');
+            }
+
             static::$themeSlug = basename(dirname(__DIR__));
         }
 
@@ -119,7 +120,7 @@ class Kernel
 
     public static function getManifest(): array
     {
-        if(empty(static::$manifest)) {
+        if (empty(static::$manifest)) {
             static::$manifest = json_decode(file_get_contents(static::getThemePath('assets/mix-manifest.json')), true);
         }
 
@@ -128,7 +129,7 @@ class Kernel
 
     public static function getThemePath(string $file = ''): string
     {
-        if(empty(static::$themePath)) {
+        if (empty(static::$themePath)) {
             static::$themePath = dirname(__DIR__);
         }
 
@@ -139,9 +140,22 @@ class Kernel
         return static::$themePath.$append;
     }
 
+    public static function getAutoloadedPath(string $file = ''): string
+    {
+        if (empty(static::$autoloadedPath)) {
+            static::$autoloadedPath = __DIR__;
+        }
+
+        $file = trim($file, '/\\');
+
+        $append = !$file ? '' : '/'.$file;
+
+        return static::$autoloadedPath.$append;
+    }
+
     public static function getThemeUrl(string $file = ''): string
     {
-        if(empty(static::$themeUrl)) {
+        if (empty(static::$themeUrl)) {
             static::$themeUrl = get_stylesheet_directory_uri();
         }
 
@@ -150,5 +164,10 @@ class Kernel
         $append = !$file ? '' : '/'.$file;
 
         return static::$themeUrl.$append;
+    }
+
+    public static function getNamespace(): string
+    {
+        return __NAMESPACE__;
     }
 }

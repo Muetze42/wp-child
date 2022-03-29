@@ -1,9 +1,30 @@
 <?php
 
-namespace NormanHuth\WpChild\Helpers;
+namespace NormanHuth\WpChild;
 
 class WordPress
 {
+    public static array $plugins;
+
+    /**
+     * Check if Plugin is active with Plugin folder name
+     *
+     * @param string $folderName
+     * @return bool
+     */
+    public static function isPluginActive(string $folderName): bool
+    {
+        if (empty(static::$plugins)) {
+            $array = get_option('active_plugins', []);
+
+            static::$plugins = array_map(function ($value) {
+                return explode('/', $value)[0];
+            }, $array);
+        }
+
+        return in_array($folderName, static::$plugins);
+    }
+
     /**
      * Registers a Custom Post Type.
      *
@@ -64,7 +85,7 @@ class WordPress
             'map_meta_cap'        => true
         ];
 
-        $params = array_merge($params, $merge);
+        $params = array_merge($params, $additionalOptions);
 
         register_post_type($name, $params);
 
