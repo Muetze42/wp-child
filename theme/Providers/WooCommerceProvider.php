@@ -11,7 +11,7 @@ class WooCommerceProvider extends Kernel
     /**
      * @return WooCommerceProvider|null
      */
-    public static function instance(): ?ThemeProvider
+    public static function instance(): ?WooCommerceProvider
     {
         if (self::$instance === null) {
             self::$instance = new WooCommerceProvider;

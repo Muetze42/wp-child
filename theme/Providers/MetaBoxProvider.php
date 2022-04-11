@@ -7,15 +7,15 @@ use NormanHuth\WpChild\MetaBox;
 
 class MetaBoxProvider extends Kernel
 {
-    protected static ?MetaBox $instance = null;
+    protected static ?MetaBoxProvider $instance = null;
 
     /**
-     * @return MetaBox|null
+     * @return MetaBoxProvider|null
      */
-    public static function instance(): ?MetaBox
+    public static function instance(): ?MetaBoxProvider
     {
         if (self::$instance === null) {
-            self::$instance = new MetaBox;
+            self::$instance = new MetaBoxProvider;
         }
 
         return self::$instance;
