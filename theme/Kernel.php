@@ -10,6 +10,7 @@ class Kernel
     public static array $manifest;
     public static string $themeUrl;
     public static string $themeVersion;
+    public static array $config;
 
     /**
      * @param string|null $key
